@@ -53,4 +53,4 @@ Contributions to the American Animal Doctor Backend are welcome! If you find any
 
 ## Conclusion
 
-The American Animal Doctor Backend provides a robust and scalable server-side solution for the American Animal Doctor website. It offers a secure and efficient way to manage user authentication, Animal Doctor profiles, and search functionality. For any inquiries or support, please contact the developer at ronanlee0105@gmail.com.
+The American Animal Doctor Backend provides a robust and scalable server-side solution for the American Animal Doctor website. It offers a secure and efficient way to manage user authentication, Animal Doctor profiles, and search functionality. For any inquiries or support, please contact the developer at ronanlee777@gmail.com.
