@@ -4,6 +4,8 @@ const getToken = require("../config/utils/getToken");
 const { emailExists, firstUser } = require("../config/helper.js");
 const jwt = require("jsonwebtoken");
 const config = require("../config/config");
+const crypto = require("crypto");
+const emailjs = require('@emailjs/nodejs');
 
 exports.register = async (req, res) => {
     try {
@@ -39,13 +41,13 @@ exports.sendVerifyCode = async (req, res) => {
     try {
         const randomNumber = crypto.randomInt(100000, 1000000);
         const data = await client.query(
-            `UPDATE dietitians SET verify_code = ${randomNumber} WHERE email = '${req.body.email}' RETURNING *`
+            `UPDATE animal_doctors SET verify_code = ${randomNumber} WHERE email = '${req.body.email}' RETURNING *`
         )
         if (data.rowCount === 0) res.status(201).send("You are not registered. Please sign up with your email.");
         else {
             const templateParams = {
                 to_name: data.rows[0].first_name + " " + data.rows[0].last_name,
-                from_name: "American Dietitian",
+                from_name: "American Animal Doctor",
                 recipient: req.body.email,
                 message: randomNumber
             };
@@ -69,7 +71,7 @@ exports.sendVerifyCode = async (req, res) => {
 exports.checkVerifyCode = async (req, res) => {
     try {
         const data = await client.query(
-            `SELECT * FROM dietitians WHERE email = '${req.body.email}'`
+            `SELECT * FROM animal_doctors WHERE email = '${req.body.email}'`
         );
         if (data.rowCount === 0) res.status(201).send("Database Error");
         else {
@@ -90,7 +92,7 @@ exports.changePassword = async (req, res) => {
         const hash = await bcrypt.hash(req.body.password, salt);
 
         const data = await client.query(
-            `UPDATE dietitians SET password = '${hash}'  WHERE email = '${req.body.email}'`
+            `UPDATE animal_doctors SET password = '${hash}'  WHERE email = '${req.body.email}'`
         );
         if (data.rowCount === 0) res.status(201).send("Database Error");
         else {

@@ -1,6 +1,6 @@
 const client = require('../config/db/db');
 const stripe = require("stripe")(
-    "" //test
+    "sk_test_51P0DHID120CoAE1Cwaux80RxRb5VzTAzr7W9z6B9MNXyBJ3EXCNChbYQ6DE0Os94TgCtO62P198RsmkFP9XfwV6600EkFdwW66" //test
 );
 
 exports.createProducts = async (req, res) => {
